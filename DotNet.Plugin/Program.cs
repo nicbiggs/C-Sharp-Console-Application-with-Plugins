@@ -6,9 +6,16 @@ namespace DotNet.Plugin
 {
     class Program
     {
+
         public static void Main(string[] args)
         {
             Console.WriteLine("Starting plugin app...");
+            LoadPlugins();
+            InterfaceLoop();
+        }
+		
+        static void LoadPlugins()
+        {
             try
             {
                 PluginLoader loader = new PluginLoader();
@@ -21,34 +28,58 @@ namespace DotNet.Plugin
                 Console.ReadKey();
                 Environment.Exit(0);
             }
+        }
 
-            while(true)
+        static void InterfaceLoop()
+        {
+            while (true)
             {
-                try
-                {
-                    Console.Write("> ");
-                    string line = Console.ReadLine();
-                    string name = line.Split(new char[] { ' ' }).FirstOrDefault();
-                    if (line == "exit")
-                    {
-                        Environment.Exit(0);
-                    }
-                    IPlugin plugin = PluginLoader.Plugins.Where(p => p.Name == name).FirstOrDefault();
-                    if (plugin != null)
-                    {
-                        string parameters = line.Replace(string.Format("{0} ", name), string.Empty);
-                        plugin.Go(parameters);
-                    }
-                    else
-                    {
-                        Console.WriteLine(string.Format("No plugin found with name '{0}'", name));
-                    }
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(string.Format("Caught exception: {0}", ex.Message));
-                }
+				Console.Write("> ");
+				InputHandler();
             }
+        }
+
+        static void InputHandler()
+        {
+            try
+            {
+                string inputLine = Console.ReadLine();
+                ProcessInput(inputLine);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Caught exception: {0}", ex.Message));
+            }
+
+        }
+
+        static void ProcessInput(string inputLine)
+        {
+            string operationName = inputLine.Split(new char[] { ' ' }).FirstOrDefault();
+            if (IsExit(operationName))
+            {
+                Environment.Exit(0);
+            }
+            IPlugin plugin = GeneratePlugin(operationName);
+            if (plugin != null)
+            {
+                string parameters = inputLine.Replace(string.Format("{0} ", operationName), string.Empty);
+                plugin.Go(parameters);
+            }
+            else
+            {
+                Console.WriteLine(string.Format("No plugin found with name '{0}'", operationName));
+            }
+        }
+
+        static bool IsExit(string operationName)
+        {
+            return (operationName == "exit");
+        }
+
+        static IPlugin GeneratePlugin(string operationName)
+        {
+            return PluginLoader.Plugins.Where(p => p.Name == operationName).FirstOrDefault();
         }
     }
 }

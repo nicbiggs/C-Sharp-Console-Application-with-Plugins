@@ -11,3 +11,7 @@ to do basic math operations.
 - How to structure a Plugin implementation
 - Organizing code to simplify creating additional operations later
 - What some of the subtle differences are between C# and VB.Net
+
+### To use:
+Be sure to have the plugin DLL files inside of a folder named "Plugins"
+This folder needs to be in the same folder as the console application .exe file.

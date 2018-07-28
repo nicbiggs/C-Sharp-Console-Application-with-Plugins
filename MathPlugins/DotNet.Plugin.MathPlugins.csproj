@@ -44,6 +44,8 @@
     <Compile Include="Operators\Divide.cs" />
     <Compile Include="IOperation.cs" />
     <Compile Include="LineParser.cs" />
+    <Compile Include="Operators\Exponent.cs" />
+    <Compile Include="Operators\Logarithm.cs" />
     <Compile Include="Operators\Multiply.cs" />
     <Compile Include="Operators\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
