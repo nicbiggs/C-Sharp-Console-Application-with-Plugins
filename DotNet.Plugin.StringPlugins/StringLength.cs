@@ -23,7 +23,15 @@ namespace DotNet.Plugin.StringPlugins
             }
         }
 
-        public void Go(string parameters)
+		public string Category
+		{
+			get
+			{
+				return "Text";
+			}
+		}
+
+		public void Go(string parameters)
         {
             Console.WriteLine(parameters.Length);
         }

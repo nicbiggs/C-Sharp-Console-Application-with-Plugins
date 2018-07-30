@@ -37,6 +37,14 @@ namespace DotNet.Plugin.Business
             {
                 Plugins.Add((IPlugin)Activator.CreateInstance(type));
             }
+
+			SortPlugins();
         }
+
+		private void SortPlugins()
+		{
+			//Idea from: https://stackoverflow.com/questions/7099741/c-sharp-list-sort-by-two-columns
+			Plugins = Plugins.OrderBy(a=>a.Category).ThenBy(a=>a.Name).ToList();
+		}
     }
 }

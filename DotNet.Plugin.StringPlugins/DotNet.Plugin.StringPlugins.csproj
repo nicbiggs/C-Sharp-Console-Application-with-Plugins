@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SentenceCheck.cs" />
+    <Compile Include="SentenceChecker.cs" />
     <Compile Include="StringLength.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

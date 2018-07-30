@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNet.Plugin.MathPlugins.Operators
 {
@@ -21,7 +17,7 @@ namespace DotNet.Plugin.MathPlugins.Operators
 		{
 			get
 			{
-				return string.Format("{0} /n {1}", 
+				return string.Format("{0}\n\t{1}", 
 					"Takes the logarithm of the first number with the base of the next number. ", 
 					"Then continues to take the log of the result with the next number.");
 			}

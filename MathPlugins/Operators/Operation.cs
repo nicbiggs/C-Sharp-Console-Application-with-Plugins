@@ -16,7 +16,15 @@ namespace DotNet.Plugin.MathPlugins
             get;
         }
 
-        private double answer;
+		public string Category
+		{
+			get
+			{
+				return "Math";
+			}
+		}
+
+		private double answer;
 
         public void Go(string parameters)
         {
